@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const queryText = `
-    SELECT "id", "name" FROM "plants";
+    SELECT * FROM "plants";
   `;
   pool.query(queryText)
     .then((result) => { res.send(result.rows); })
@@ -30,6 +30,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const newPlant = req.body;
+  console.log(newPlant)
   const queryText = `
     INSERT INTO "plants"
       ("name", "kingdom", "clade", "order", "family", "subfamily", "genus")
